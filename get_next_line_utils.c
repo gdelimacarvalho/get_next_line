@@ -6,7 +6,7 @@
 /*   By: gade-lim <gade-lim@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 10:38:50 by gade-lim          #+#    #+#             */
-/*   Updated: 2021/06/21 18:57:54 by gade-lim         ###   ########.fr       */
+/*   Updated: 2021/06/22 11:10:19 by gade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ char	*save_readen(char *str)
 	}
 	res = (char *)malloc((ft_strlen_chr(str, '\0') - i) * sizeof(char));
 	i++;
+	j = 0;
 	while (str[i] != '\0')
 	{
 		res[j] = str[i];
