@@ -6,18 +6,20 @@
 /*   By: gade-lim <gade-lim@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 10:38:50 by gade-lim          #+#    #+#             */
-/*   Updated: 2021/06/17 16:14:40 by gade-lim         ###   ########.fr       */
+/*   Updated: 2021/06/21 18:57:54 by gade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen (const char *s)
+size_t	ft_strlen_chr(const char *s, char c)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	if (s == NULL)
+		return (0);
+	while (s[i] != '\0' && s[i] != c)
 	{
 		i++;
 	}
@@ -32,17 +34,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
-	new_s = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	new_s = (char *)malloc((ft_strlen_chr(s1, '\0')
+				+ ft_strlen_chr(s2, '\0') + 1) * sizeof(char));
 	if (new_s == NULL)
 		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
+	while (s1[i] != '\0' || s1 != NULL)
 	{
 		new_s[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j] != '\0')
+	while (s2[j] != '\0' || s2 != NULL)
 	{
 		new_s[i] = s2[j];
 		i++;
@@ -55,7 +58,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 char	*current_line(char *str)
 {
 	size_t	i;
-	size_t	j;
 	char	*result;
 
 	i = 0;
@@ -63,18 +65,58 @@ char	*current_line(char *str)
 		return (0);
 	while (str[i] != '\0' && str[i] != '\n')
 		i++;
-	if (str[i] == '\0')
-		result = malloc(sizeof(char) * (i));
-	else
-		result = malloc(sizeof(char) * (i + 1));
+	result = (char *)malloc(sizeof(char) * (i + 1));
 	if (result == NULL)
 		return (0);
-	j = 0;
-	while (str[j] != '\0' && str[j] != '\n')
+	i = 0;
+	while (str[i] != '\0' && str[i] != '\n')
 	{
-		result[j] = str[j];
+		result[i] = str[i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}
+
+int	check_readen(char *result)
+{
+	size_t	i;
+
+	i = 0;
+	if (result == NULL)
+		return (0);
+	while (result[i] != '\0')
+	{
+		if (result[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	*save_readen(char *str)
+{
+	size_t	i;
+	size_t	j;
+	char	*res;
+
+	if (str == NULL)
+		return (NULL);
+	i = ft_strlen_chr(str, '\n');
+	if (str[i] == '\0')
+	{
+		free (str);
+		return (NULL);
+	}
+	res = (char *)malloc((ft_strlen_chr(str, '\0') - i) * sizeof(char));
+	i++;
+	while (str[i] != '\0')
+	{
+		res[j] = str[i];
+		i++;
 		j++;
 	}
-	result[j] = '\0';
-	return (result);
+	res[j] = '\0';
+	free(str);
+	return (res);
 }
