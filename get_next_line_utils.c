@@ -6,7 +6,7 @@
 /*   By: gade-lim <gade-lim@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 10:38:50 by gade-lim          #+#    #+#             */
-/*   Updated: 2021/06/22 11:10:19 by gade-lim         ###   ########.fr       */
+/*   Updated: 2021/06/24 22:33:48 by gade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (new_s == NULL)
 		return (NULL);
 	i = 0;
-	while (s1[i] != '\0' || s1 != NULL)
+	while (s1 != NULL && s1[i] != '\0')
 	{
 		new_s[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j] != '\0' || s2 != NULL)
+	while (s2 != NULL && s2[j] != '\0')
 	{
 		new_s[i] = s2[j];
 		i++;

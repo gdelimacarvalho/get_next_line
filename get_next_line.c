@@ -6,7 +6,7 @@
 /*   By: gade-lim <gade-lim@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:45:50 by gade-lim          #+#    #+#             */
-/*   Updated: 2021/06/21 17:51:20 by gade-lim         ###   ########.fr       */
+/*   Updated: 2021/06/27 11:12:09 by gade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ int	get_next_line(int fd, char **line)
 	{
 		readen = read(fd, buf, BUFFER_SIZE);
 		if (readen == -1)
-		{
-			free(buf);
-			return (-1);
-		}
+			return (free(buf), -1);
 		buf[readen] = '\0';
 		result = ft_strjoin(result, buf);
 	}
