@@ -6,7 +6,7 @@
 /*   By: gade-lim <gade-lim@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 10:39:09 by gade-lim          #+#    #+#             */
-/*   Updated: 2021/06/24 22:27:36 by gade-lim         ###   ########.fr       */
+/*   Updated: 2021/07/01 15:50:21 by gade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 int		get_next_line(int fd, char **line);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char const *s2);
 char	*current_line(char *str);
 int		check_readen(char *result);
 char	*save_readen(char *str);

@@ -6,7 +6,7 @@
 /*   By: gade-lim <gade-lim@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 10:38:50 by gade-lim          #+#    #+#             */
-/*   Updated: 2021/06/24 22:33:48 by gade-lim         ###   ########.fr       */
+/*   Updated: 2021/07/01 15:51:26 by gade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	ft_strlen_chr(const char *s, char c)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	char		*new_s;
 	size_t		i;
@@ -52,7 +52,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	new_s[i] = '\0';
-	return (new_s);
+	return (free(s1), new_s);
 }
 
 char	*current_line(char *str)
@@ -109,6 +109,8 @@ char	*save_readen(char *str)
 		return (NULL);
 	}
 	res = (char *)malloc((ft_strlen_chr(str, '\0') - i) * sizeof(char));
+	if (res == NULL)
+		return (NULL);
 	i++;
 	j = 0;
 	while (str[i] != '\0')
@@ -118,6 +120,5 @@ char	*save_readen(char *str)
 		j++;
 	}
 	res[j] = '\0';
-	free(str);
-	return (res);
+	return (free(str), res);
 }
