@@ -6,11 +6,23 @@
 /*   By: gade-lim <gade-lim@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:45:50 by gade-lim          #+#    #+#             */
-/*   Updated: 2021/07/05 11:25:30 by gade-lim         ###   ########.fr       */
+/*   Updated: 2021/07/07 10:34:57 by gade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+char	*check_start(int fd, char **line)
+{
+	char	*buf;
+
+	if (fd < 0 || line == NULL || BUFFER_SIZE <= 0)
+		return (NULL);
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (buf == NULL)
+		return (NULL);
+	return (buf);
+}
 
 int	get_next_line(int fd, char **line)
 {
@@ -18,9 +30,7 @@ int	get_next_line(int fd, char **line)
 	char		*buf;
 	static char	*result;
 
-	if (fd < 0 || line == NULL || BUFFER_SIZE <= 0)
-		return (-1);
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buf = check_start(fd, line);
 	if (buf == NULL)
 		return (-1);
 	readen = 1;
@@ -37,5 +47,7 @@ int	get_next_line(int fd, char **line)
 	result = save_readen(result);
 	if (readen == 0)
 		return (0);
+	if (result == NULL)
+		return (free(result), -1);
 	return (1);
 }
